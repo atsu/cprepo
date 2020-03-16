@@ -15,5 +15,6 @@ else
   #git add .
   #git commit -m "update workflow"
   ls -al "$2"
+  cat "$2"
   #git status
 fi
