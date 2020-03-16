@@ -1,0 +1,13 @@
+on: [push]
+
+jobs:
+  cprepo-dogfood:
+    runs-on: ubuntu-latest
+    name: Dogfood cprepo GitHub action
+    steps:
+    - uses: actions/checkout@v2
+    - name: copy test
+      uses: ./
+      with:
+        src-path: 'upstream/.github/workflows/build.yaml'
+        dst-path: 'downstream/.github/workflows/build.yaml'
