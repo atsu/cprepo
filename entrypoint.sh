@@ -2,7 +2,7 @@
 
 set -x
 
-if diff -c "$1" "$2"
+if diff -U "$1" "$2"
 then
   echo "same/success"
 else
