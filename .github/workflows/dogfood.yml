@@ -6,8 +6,13 @@ jobs:
     name: Dogfood cprepo GitHub action
     steps:
     - uses: actions/checkout@v2
+    - name: create test files
+      run: |
+        mkdir test-src test-dst
+        printf "a\nb\nc\n" > test-src/test1.txt
+        printf "a\nc\n" > test-dst/test1.txt
     - name: copy test
       uses: ./
       with:
-        src-path: 'foo.txt'
-        dst-path: 'foobar.txt'
+        src-path: test-src/test1.txt
+        dst-path: test-dst/test1.txt
