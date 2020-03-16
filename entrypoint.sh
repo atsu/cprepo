@@ -2,10 +2,11 @@
 
 set -x
 
-if diff -U "$1" "$2"
+if diff -U3 "$1" "$2"
 then
   echo "same/success"
 else
+  echo "exit code = $?"
   echo "diff/failure"
   #git config --local user.email "action@github.com"
   #git config --local user.name "GitHub cprepo action"
