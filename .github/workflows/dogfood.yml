@@ -9,5 +9,5 @@ jobs:
     - name: copy test
       uses: ./
       with:
-        src-path: 'upstream/.github/workflows/build.yaml'
-        dst-path: 'downstream/.github/workflows/build.yaml'
+        src-path: 'foo.txt'
+        dst-path: 'foobar.txt'
