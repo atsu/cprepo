@@ -1,0 +1,15 @@
+name: k8slynter
+description: 'Uses a forked version of github.com/instrumenta/kubeval to validating k8s yaml. Forked version add yaml sequence support.'
+inputs:
+  src-path:
+    description: 'The path to file to be copied'
+    required: true
+  dst-path:
+    description: 'The destination path for the source file.'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+  - ${{ inputs.src-path }}
+  - ${{ inputs.dst-path }}
