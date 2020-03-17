@@ -10,7 +10,7 @@ jobs:
       run: |
         mkdir test-src test-dst
         printf "a\nb\nc\n" > test-src/test1.txt
-        printf "a\nb\nc\nd\n" > test-src/test2.txt
+        printf "a\nb\nc\nd\n" > test-dst/test2.txt
     - name: 'copy test, destination file does not exist'
       uses: ./
       with:
