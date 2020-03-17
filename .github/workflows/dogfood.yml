@@ -27,6 +27,9 @@ jobs:
       run: |
         diff test-src/test1.txt test-dst/test1.txt
         echo "changed =  ${{ steps.test-1.outputs.changed }}"
+        if [ "${{ steps.test-1.outputs.changed }}" != "no" ]; then
+          exit 1
+        fi
 
     - name: 'copy test 2: files differ'
       id: test-2
