@@ -29,25 +29,34 @@ jobs:
         echo "changed =  ${{ steps.test-1.outputs.changed }}"
 
     - name: 'copy test 2: files differ'
+      id: test-2
       uses: ./
       with:
         src-path: test-src/test2.txt
         dst-path: test-dst/test2.txt
     - name: 'verify test 2'
-      run: diff test-src/test2.txt test-dst/test2.txt
+      run: |
+        diff test-src/test2.txt test-dst/test2.txt
+        echo "changed =  ${{ steps.test-2.outputs.changed }}"
 
     - name: 'copy test 3: files same'
+      id: test-3
       uses: ./
       with:
         src-path: test-src/test3.txt
         dst-path: test-dst/test3.txt
     - name: 'verify test 3'
-      run: diff test-src/test3.txt test-dst/test3.txt
+      run: |
+        diff test-src/test3.txt test-dst/test3.txt
+        echo "changed =  ${{ steps.test-3.outputs.changed }}"
 
     - name: 'copy test 4: different file names'
+      id: test-4
       uses: ./
       with:
         src-path: test-src/test3.txt
         dst-path: test-dst/test4.txt
     - name: 'verify test 4'
-      run: diff test-src/test3.txt test-dst/test4.txt
+      run: |
+        diff test-src/test3.txt test-dst/test4.txt
+        echo "changed =  ${{ steps.test-4.outputs.changed }}"
