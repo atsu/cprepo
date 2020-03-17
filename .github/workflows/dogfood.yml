@@ -10,28 +10,30 @@ jobs:
       run: |
         mkdir test-src test-dst
         printf "a\nb\nc\n" > test-src/test1.txt
+
         printf "a\nb\nc\nd\n" > test-src/test2.txt
         printf "a\nb\nc\n" > test-dst/test2.txt
-        printf "a\nb\nc\n\n" > test-src/test3.txt
+
+        printf "a\nb\nc\n" > test-src/test3.txt
         printf "a\nb\nc\n" > test-dst/test3.txt
-    - name: 'copy test: destination file does not exist'
+    - name: 'copy test 1: destination file does not exist'
       uses: ./
       with:
         src-path: test-src/test1.txt
         dst-path: test-dst/test1.txt
-    - name: verify test 1
+    - name: 'verify test 1'
       run: diff test-src/test1.txt test-dst/test1.txt
-    - name: 'copy test: files differ'
+    - name: 'copy test 2: files differ'
       uses: ./
       with:
         src-path: test-src/test2.txt
         dst-path: test-dst/test2.txt
-    - name: verify test 2
+    - name: 'verify test 2'
       run: diff test-src/test2.txt test-dst/test2.txt
-    - name: 'copy test: files same'
+    - name: 'copy test 3: files same'
       uses: ./
       with:
         src-path: test-src/test3.txt
         dst-path: test-dst/test3.txt
-    - name: verify test 3
+    - name: 'verify test 3'
       run: diff test-src/test3.txt test-dst/test3.txt
