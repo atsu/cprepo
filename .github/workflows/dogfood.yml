@@ -18,12 +18,15 @@ jobs:
         printf "a\nb\nc\n" > test-dst/test3.txt
 
     - name: 'copy test 1: destination file does not exist'
+      id: test-1
       uses: ./
       with:
         src-path: test-src/test1.txt
         dst-path: test-dst/test1.txt
     - name: 'verify test 1'
-      run: diff test-src/test1.txt test-dst/test1.txt
+      run: |
+        diff test-src/test1.txt test-dst/test1.txt
+        echo "changed =  ${{ steps.test-1.outputs.changed }}"
 
     - name: 'copy test 2: files differ'
       uses: ./
