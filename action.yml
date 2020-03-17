@@ -7,6 +7,9 @@ inputs:
   dst-path:
     description: 'The destination path for the source file.'
     required: true
+outputs:
+  changed:
+    description: 'yes if file was copied, otherwise no'
 runs:
   using: 'docker'
   image: 'Dockerfile'
