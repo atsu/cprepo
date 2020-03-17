@@ -6,13 +6,15 @@ jobs:
     name: Dogfood cprepo GitHub action
     steps:
     - uses: actions/checkout@v2
-    - name: create test files
+    - name: setup test files
       run: |
         mkdir test-src test-dst
         printf "a\nb\nc\n" > test-src/test1.txt
-        printf "a\nc\n" > test-dst/test1.txt
-    - name: copy test
+        printf "a\nb\nc\nd\n" > test-src/test2.txt
+    - name: 'copy test, destination file does not exist'
       uses: ./
       with:
         src-path: test-src/test1.txt
         dst-path: test-dst/test1.txt
+    - name: verify
+      run: diff test-src/test1.txt test-dst/test2.txt
