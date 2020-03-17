@@ -16,6 +16,7 @@ jobs:
 
         printf "a\nb\nc\n" > test-src/test3.txt
         printf "a\nb\nc\n" > test-dst/test3.txt
+
     - name: 'copy test 1: destination file does not exist'
       uses: ./
       with:
@@ -23,6 +24,7 @@ jobs:
         dst-path: test-dst/test1.txt
     - name: 'verify test 1'
       run: diff test-src/test1.txt test-dst/test1.txt
+
     - name: 'copy test 2: files differ'
       uses: ./
       with:
@@ -30,6 +32,7 @@ jobs:
         dst-path: test-dst/test2.txt
     - name: 'verify test 2'
       run: diff test-src/test2.txt test-dst/test2.txt
+
     - name: 'copy test 3: files same'
       uses: ./
       with:
@@ -37,3 +40,11 @@ jobs:
         dst-path: test-dst/test3.txt
     - name: 'verify test 3'
       run: diff test-src/test3.txt test-dst/test3.txt
+
+    - name: 'copy test 4: different file names'
+      uses: ./
+      with:
+        src-path: test-src/test3.txt
+        dst-path: test-dst/test4.txt
+    - name: 'verify test 4'
+      run: diff test-src/test3.txt test-dst/test4.txt
