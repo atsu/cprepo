@@ -1,12 +1,8 @@
 #!/bin/sh -l
 
-set -x
-
 if ! diff -U3 "$1" "$2"
 then
-  echo "exit code = $?"
-  echo "diff/failure"
+  echo "source file $1 differs from destination file $2"
+  echo "will copy from source path to destination path"
   cp "$1" "$2"
-  ls -al "$2"
-  cat "$2"
 fi
