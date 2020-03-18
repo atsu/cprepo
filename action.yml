@@ -5,8 +5,11 @@ inputs:
     description: 'The path to file to be copied'
     required: true
   dst-path:
-    description: 'The destination path for the source file.'
+    description: 'The destination path'
     required: true
+outputs:
+  changed:
+    description: 'yes if file was copied, otherwise no'
 runs:
   using: 'docker'
   image: 'Dockerfile'

@@ -18,33 +18,57 @@ jobs:
         printf "a\nb\nc\n" > test-dst/test3.txt
 
     - name: 'copy test 1: destination file does not exist'
+      id: test-1
       uses: ./
       with:
         src-path: test-src/test1.txt
         dst-path: test-dst/test1.txt
     - name: 'verify test 1'
-      run: diff test-src/test1.txt test-dst/test1.txt
+      run: |
+        diff test-src/test1.txt test-dst/test1.txt
+        echo "changed =  ${{ steps.test-1.outputs.changed }}"
+        if [ "${{ steps.test-1.outputs.changed }}" != "yes" ]; then
+          exit 1
+        fi
 
     - name: 'copy test 2: files differ'
+      id: test-2
       uses: ./
       with:
         src-path: test-src/test2.txt
         dst-path: test-dst/test2.txt
     - name: 'verify test 2'
-      run: diff test-src/test2.txt test-dst/test2.txt
+      run: |
+        diff test-src/test2.txt test-dst/test2.txt
+        echo "changed =  ${{ steps.test-2.outputs.changed }}"
+        if [ "${{ steps.test-2.outputs.changed }}" != "yes" ]; then
+          exit 1
+        fi
 
     - name: 'copy test 3: files same'
+      id: test-3
       uses: ./
       with:
         src-path: test-src/test3.txt
         dst-path: test-dst/test3.txt
     - name: 'verify test 3'
-      run: diff test-src/test3.txt test-dst/test3.txt
+      run: |
+        diff test-src/test3.txt test-dst/test3.txt
+        echo "changed =  ${{ steps.test-3.outputs.changed }}"
+        if [ "${{ steps.test-3.outputs.changed }}" != "no" ]; then
+          exit 1
+        fi
 
     - name: 'copy test 4: different file names'
+      id: test-4
       uses: ./
       with:
         src-path: test-src/test3.txt
         dst-path: test-dst/test4.txt
     - name: 'verify test 4'
-      run: diff test-src/test3.txt test-dst/test4.txt
+      run: |
+        diff test-src/test3.txt test-dst/test4.txt
+        echo "changed =  ${{ steps.test-4.outputs.changed }}"
+        if [ "${{ steps.test-4.outputs.changed }}" != "yes" ]; then
+          exit 1
+        fi
